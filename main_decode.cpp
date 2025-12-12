@@ -1,4 +1,3 @@
-﻿// Base64Project.cpp (главный файл с тестами)
 #include <iostream>
 #include <string>
 #include "base64_decode.h"
@@ -6,11 +5,8 @@
 
 int main() {
     setlocale(LC_ALL, "ru");
-    std::cout << "=== ЛАБОРАТОРНАЯ РАБОТА №4 ===\n";
     std::cout << "=== Декодирование Base64 ===\n\n";
-
-    // КОНТРОЛЬНЫЕ ЗАДАНИЯ ИЗ ЛАБОРАТОРНОЙ
-    std::cout << "=== Контрольные задания (стр. 7) ===\n\n";
+    std::cout << "=== Контрольные задания ===\n\n";
 
     // Задание 4: Раскодировать Pt54
     std::cout << "4. Раскодировать 'Pt54':\n";
@@ -56,4 +52,5 @@ int main() {
 
    
     return 0;
+
 }
