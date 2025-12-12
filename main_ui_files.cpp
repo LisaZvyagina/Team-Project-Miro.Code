@@ -15,6 +15,7 @@ void showMenu() {
 }
 
 int main() {
+    setlocale(LC_ALL, "rus");
     int choice;
     std::string input, output, inputFile, outputFile;
 
@@ -24,52 +25,52 @@ int main() {
         std::cin.ignore(); // очистка буфера
 
         switch (choice) {
-            case 1: { // Кодирование из файла
-                std::cout << "Введите имя входного файла: ";
-                std::getline(std::cin, inputFile);
-                std::cout << "Введите имя выходного файла: ";
-                std::getline(std::cin, outputFile);
-                input = readFile(inputFile);
-                if (!input.empty()) {
-                    output = encodeBase64(input);
-                    writeFile(outputFile, output);
-                }
-                break;
+        case 1: { // Кодирование из файла
+            std::cout << "Введите имя входного файла: ";
+            std::getline(std::cin, inputFile);
+            std::cout << "Введите имя выходного файла: ";
+            std::getline(std::cin, outputFile);
+            input = readFile(inputFile);
+            if (!input.empty()) {
+                output = Base64::encode(input);
+                writeFile(outputFile, output);
             }
-            case 2: { // Декодирование из файла
-                std::cout << "Введите имя входного файла: ";
-                std::getline(std::cin, inputFile);
-                std::cout << "Введите имя выходного файла: ";
-                std::getline(std::cin, outputFile);
-                input = readFile(inputFile);
-                if (!input.empty()) {
-                    output = decodeBase64(input);
-                    writeFile(outputFile, output);
-                }
-                break;
+            break;
+        }
+        case 2: { // Декодирование из файла
+            std::cout << "Введите имя входного файла: ";
+            std::getline(std::cin, inputFile);
+            std::cout << "Введите имя выходного файла: ";
+            std::getline(std::cin, outputFile);
+            input = readFile(inputFile);
+            if (!input.empty()) {
+                output = base64_decode(input);
+                writeFile(outputFile, output);
             }
-            case 3: { // Кодирование из консоли
-                std::cout << "Введите текст для кодирования: ";
-                std::getline(std::cin, input);
-                output = encodeBase64(input);
-                std::cout << "Результат Base64: " << output << std::endl;
-                break;
-            }
-            case 4: { // Декодирование из консоли
-                std::cout << "Введите текст для декодирования: ";
-                std::getline(std::cin, input);
-                output = decodeBase64(input);
-                std::cout << "Результат: " << output << std::endl;
-                break;
-            }
-            case 5: {
-                std::cout << "Выход...\n";
-                break;
-            }
-            default: {
-                std::cout << "Неверный выбор. Попробуйте снова.\n";
-                break;
-            }
+            break;
+        }
+        case 3: { // Кодирование из консоли
+            std::cout << "Введите текст для кодирования: ";
+            std::getline(std::cin, input);
+            output = Base64::encode(input);
+            std::cout << "Результат Base64: " << output << std::endl;
+            break;
+        }
+        case 4: { // Декодирование из консоли
+            std::cout << "Введите текст для декодирования: ";
+            std::getline(std::cin, input);
+            output = base64_decode(input);
+            std::cout << "Результат: " << output << std::endl;
+            break;
+        }
+        case 5: {
+            std::cout << "Выход...\n";
+            break;
+        }
+        default: {
+            std::cout << "Неверный выбор. Попробуйте снова.\n";
+            break;
+        }
         }
     } while (choice != 5);
 
