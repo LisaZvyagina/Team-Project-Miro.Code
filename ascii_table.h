@@ -1,11 +1,9 @@
-// ascii_table.h
 #ifndef ASCII_TABLE_H
 #define ASCII_TABLE_H
 
 #include <iostream>
 #include <unordered_map>
 
-// Функция для проверки символа по ASCII
 inline void print_ascii_char(int code) {
     static const std::unordered_map<int, char> ASCII_TABLE = {
         {65, 'A'}, {66, 'B'}, {67, 'C'}, {68, 'D'}, {69, 'E'}, {70, 'F'},
@@ -31,8 +29,9 @@ inline void print_ascii_char(int code) {
         std::cout << "ASCII: " << code << " -> '" << it->second << "'" << std::endl;
     }
     else {
-        std::cout << "ASCII: " << code << " -> (непечатный символ)" << std::endl;
+        std::cout << "ASCII: " << code << " -> (Г­ДєДЏДєГ·Е•Е€Г­Е±Г© Е„ДЌД›ГўГ®Г«)" << std::endl;
     }
 }
+
 
 #endif // ASCII_TABLE_H
