@@ -34,4 +34,4 @@ inline void print_ascii_char(int code) {
 }
 
 
-#endif // ASCII_TABLE_H
+#endif
