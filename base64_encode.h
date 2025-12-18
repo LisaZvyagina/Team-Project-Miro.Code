@@ -5,16 +5,8 @@
 #include <vector>
 
 namespace Base64 {
-
-	std::string encode(const std::string& input);
-	std::string encode(const std::vector<unsigned char>& data);
-
-	std::string encodeTriplet(unsigned char a, unsigned char b, unsigned char c);
-	char encodeByte(unsigned char byte);
-
-	extern const char ALPHABET[65];
-	extern const char PADDING_CHAR;
-
+    std::string encode(const std::string& input);
+    std::string encode(const std::vector<unsigned char>& data);
 }
 
 #endif
