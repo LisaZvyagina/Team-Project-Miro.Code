@@ -1,4 +1,3 @@
-
 #include "base64_decode.h"
 #include <string>
 #include <vector>
@@ -51,3 +50,4 @@ std::string base64_decode(const std::string& input) {
     return decoded;
 
 }
+
