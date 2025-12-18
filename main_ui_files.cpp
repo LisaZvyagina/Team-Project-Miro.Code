@@ -22,10 +22,10 @@ int main() {
     do {
         showMenu();
         std::cin >> choice;
-        std::cin.ignore(); // очистка буфера
+        std::cin.ignore(); 
 
         switch (choice) {
-        case 1: { // Кодирование из файла
+        case 1: { 
             std::cout << "Введите имя входного файла: ";
             std::getline(std::cin, inputFile);
             std::cout << "Введите имя выходного файла: ";
@@ -37,7 +37,7 @@ int main() {
             }
             break;
         }
-        case 2: { // Декодирование из файла
+        case 2: {
             std::cout << "Введите имя входного файла: ";
             std::getline(std::cin, inputFile);
             std::cout << "Введите имя выходного файла: ";
@@ -49,14 +49,14 @@ int main() {
             }
             break;
         }
-        case 3: { // Кодирование из консоли
+        case 3: { 
             std::cout << "Введите текст для кодирования: ";
             std::getline(std::cin, input);
             output = Base64::encode(input);
             std::cout << "Результат Base64: " << output << std::endl;
             break;
         }
-        case 4: { // Декодирование из консоли
+        case 4: { 
             std::cout << "Введите текст для декодирования: ";
             std::getline(std::cin, input);
             output = base64_decode(input);
@@ -76,3 +76,4 @@ int main() {
 
     return 0;
 }
+
