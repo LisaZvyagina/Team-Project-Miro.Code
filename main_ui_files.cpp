@@ -3,6 +3,7 @@
 #include "base64_decode.h"
 #include "base64_encode.h"
 #include "file_io.h"
+#include <locale>
 
 void showMenu() {
     std::cout << "\n=== Base64 Кодировщик/Декодировщик ===\n";
@@ -76,4 +77,5 @@ int main() {
 
     return 0;
 }
+
 
