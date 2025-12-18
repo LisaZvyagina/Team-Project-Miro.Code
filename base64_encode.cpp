@@ -1,30 +1,24 @@
-﻿#include "base64_encode.h"
+#include "base64_encode.h"
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <fstream>
 
 namespace Base64 {
-    const char ALPHABET[65] =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz"
-        "0123456789+/";
 
+    const char ALPHABET[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     const char PADDING_CHAR = '=';
+
     char encodeByte(unsigned char byte) {
-        if (byte >= 64) {
-            throw std::out_of_range("Byte value out of range for Base64 encoding");
-        }
         return ALPHABET[byte];
     }
 
     std::string encodeTriplet(unsigned char a, unsigned char b, unsigned char c) {
         std::string result(4, ' ');
-        
         result[0] = encodeByte((a >> 2) & 0x3F);
         result[1] = encodeByte(((a & 0x03) << 4) | ((b >> 4) & 0x0F));
         result[2] = encodeByte(((b & 0x0F) << 2) | ((c >> 6) & 0x03));
         result[3] = encodeByte(c & 0x3F);
-
         return result;
     }
 
@@ -47,7 +41,7 @@ namespace Base64 {
             if (len - i == 1) {
                 unsigned char a = data[i];
                 result += encodeByte((a >> 2) & 0x3F);
-                result += encodeByte(((a & 0x03) << 4) & 0x3F);
+                result += encodeByte(((a & 0x03) << 4));
                 result += PADDING_CHAR;
                 result += PADDING_CHAR;
             }
@@ -56,7 +50,7 @@ namespace Base64 {
                 unsigned char b = data[i + 1];
                 result += encodeByte((a >> 2) & 0x3F);
                 result += encodeByte(((a & 0x03) << 4) | ((b >> 4) & 0x0F));
-                result += encodeByte(((b & 0x0F) << 2) & 0x3F);
+                result += encodeByte(((b & 0x0F) << 2));
                 result += PADDING_CHAR;
             }
         }
@@ -64,5 +58,27 @@ namespace Base64 {
         return result;
     }
 
-} 
+    std::string encodeFile(const std::string& filepath) {
+        std::ifstream file(filepath, std::ios::binary);
+        if (!file) {
+            throw std::runtime_error("Cannot open file: " + filepath);
+        }
+        
+        std::string content((std::istreambuf_iterator<char>(file)),
+                           std::istreambuf_iterator<char>());
+        return encode(content);
+    }
 
+    bool encodeFileToFile(const std::string& inputFile, const std::string& outputFile) {
+        try {
+            std::string encoded = encodeFile(inputFile);
+            std::ofstream out(outputFile, std::ios::binary);
+            if (!out) return false;
+            out << encoded;
+            return true;
+        } catch (...) {
+            return false;
+        }
+    }
+
+} // namespace Base64
