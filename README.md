@@ -74,8 +74,8 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
 ### Кодирование текста
 
 ```
-Input:  Hello World
-Output: SGVsbG8gV29ybGQ=
+Input:  Xz25
+Output: WHoyNQ==
 ```
 
 ```
@@ -86,8 +86,8 @@ Output: 0J/RgNC40LLQtdGCLdC80LjRgA==
 ### Декодирование текста
 
 ```
-Input:  SGVsbG8gV29ybGQ=
-Output: Hello World
+Input:  Rj0v
+Output: F=/
 ```
 
 ```
